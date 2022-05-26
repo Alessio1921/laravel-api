@@ -1948,6 +1948,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostList",
@@ -1956,22 +1962,30 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      pagination: {}
     };
   },
   methods: {
-    getPosts: function getPosts() {
+    getPosts: function getPosts(page) {
       var _this = this;
 
-      axios.get('http://localhost:8000/api/posts').then(function (resp) {
-        _this.posts = resp.data.posts;
+      axios.get("http://localhost:8000/api/posts?page=".concat(page)).then(function (resp) {
+        _this.posts = resp.data.posts.data;
+        var _resp$data$posts = resp.data.posts,
+            current_page = _resp$data$posts.current_page,
+            last_page = _resp$data$posts.last_page;
+        _this.pagination = {
+          current_page: current_page,
+          last_page: last_page
+        };
       })["catch"](function (error) {
         console.warn(error);
       });
     }
   },
   created: function created() {
-    this.getPosts();
+    this.getPosts(1);
   }
 });
 
@@ -3174,10 +3188,48 @@ var render = function () {
   return _c(
     "div",
     { staticClass: "row" },
-    _vm._l(_vm.posts, function (post, index) {
-      return _c("Post", { key: index, attrs: { post: post } })
-    }),
-    1
+    [
+      _vm._l(_vm.posts, function (post, index) {
+        return _c("Post", { key: index, attrs: { post: post } })
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 d-flex justify-content-between" }, [
+        _vm.pagination.current_page == 1 ? _c("div") : _vm._e(),
+        _vm._v(" "),
+        _vm.pagination.current_page > 1
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-primary",
+                on: {
+                  click: function ($event) {
+                    return _vm.getPosts(_vm.pagination.current_page - 1)
+                  },
+                },
+              },
+              [_vm._v("prev")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("h5", [_vm._v("Pagina: " + _vm._s(_vm.pagination.current_page))]),
+        _vm._v(" "),
+        _vm.pagination.current_page < _vm.pagination.last_page
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-primary",
+                on: {
+                  click: function ($event) {
+                    return _vm.getPosts(_vm.pagination.current_page + 1)
+                  },
+                },
+              },
+              [_vm._v("next")]
+            )
+          : _vm._e(),
+      ]),
+    ],
+    2
   )
 }
 var staticRenderFns = []
