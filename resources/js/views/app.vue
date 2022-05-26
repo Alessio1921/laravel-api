@@ -1,11 +1,16 @@
 <template>
-    <h1>Work in Progress</h1>
+    <div class="container">
+      <PostList/>
+    </div>
 </template>
 
 <script>
+import PostList from '../components/Postlist';
 export default {
   name: "App",
-  components: {}
+  components: {
+    PostList
+  }
 }
 </script>
 
