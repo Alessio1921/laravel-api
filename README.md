@@ -1,3 +1,8 @@
+I continued the laravel-base-crud project and added a views with vue
+
+<img width="1423" alt="Schermata 2022-06-07 alle 14 30 47" src="https://user-images.githubusercontent.com/95136261/172380075-8b2b96cf-c2f3-43bc-aa31-96cda7a5790e.png">
+<img width="1423" alt="Schermata 2022-06-07 alle 14 30 38" src="https://user-images.githubusercontent.com/95136261/172380086-697a6e3e-055d-4758-9179-6e0f855f9dff.png">
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
